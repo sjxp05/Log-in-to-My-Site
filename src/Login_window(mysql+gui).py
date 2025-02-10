@@ -5,12 +5,6 @@ import pymysql
 import pyautogui as pg
 import random
 
-"""
-딕셔너리에서 요소 지우기
-1. del문
-2. pop()
-"""
-
 
 def hideWidgets():
     idEntry.place_forget()
