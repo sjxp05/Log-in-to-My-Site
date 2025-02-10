@@ -1,7 +1,7 @@
 import csv
 
 userList = dict()
-with open(".\\cli\\users.csv", "r") as f:
+with open("practice versions\\users.csv", "r") as f:
     reader = csv.DictReader(f)
     for row in reader:
         userList = row
@@ -135,7 +135,7 @@ while True:
 
     elif sel.lower() == "x":
         print("\n종료되었습니다.\n")
-        with open(".\\cli\\users.csv", "w") as f:
+        with open(".\\practice versions\\users.csv", "w") as f:
             writer = csv.writer(f)
             writer.writerow(userList.keys())
             writer.writerow(userList.values())
