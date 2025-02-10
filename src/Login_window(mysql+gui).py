@@ -5,6 +5,42 @@ import pymysql
 import pyautogui as pg
 import random
 
+tk = Tk()
+tk.geometry("600x800")
+tk.title("Login")
+
+mySiteImg = PhotoImage(file="src\\mySite.png")
+imgLb = Label(image=mySiteImg)
+
+conn = pymysql.connect(
+    host="127.0.0.1",
+    user="root",
+    password="c0ding_gw4n9",
+    db="login_users",
+    charset="utf8",
+)
+cur = conn.cursor()
+
+cur.execute("SELECT id, password, phone FROM users;")
+id2pw = cur.fetchall()
+
+id2pwDict = dict()
+id2phone = dict()
+tries = dict()
+
+for rows in id2pw:
+    id2pwDict[rows[0]] = rows[1]
+    id2phone[rows[0]] = rows[2]
+    tries[rows[0]] = 0
+
+currentUserInfo = []
+limitedList = []
+
+ifHome = 0
+suCheck = 0
+phoneCheck = 0
+newOtp = "1000000"
+
 
 def hideWidgets():
     idEntry.place_forget()
@@ -603,42 +639,7 @@ def onClosing():
         pass
 
 
-tk = Tk()
-tk.geometry("600x800")
-tk.title("Login")
 tk.protocol("WM_DELETE_WINDOW", onClosing)  # 닫을때 쓰는 함수
-
-mySiteImg = PhotoImage(file=".\\Login\\mySite.png")
-imgLb = Label(image=mySiteImg)
-
-conn = pymysql.connect(
-    host="127.0.0.1",
-    user="root",
-    password="c0ding_gw4n9",
-    db="login_users",
-    charset="utf8",
-)
-cur = conn.cursor()
-
-cur.execute("SELECT id, password, phone FROM users;")
-id2pw = cur.fetchall()
-
-id2pwDict = dict()
-id2phone = dict()
-tries = dict()
-
-for rows in id2pw:
-    id2pwDict[rows[0]] = rows[1]
-    id2phone[rows[0]] = rows[2]
-    tries[rows[0]] = 0
-
-currentUserInfo = []
-limitedList = []
-
-ifHome = 0
-suCheck = 0
-phoneCheck = 0
-newOtp = "1000000"
 
 idEntry = Entry(font=("맑은 고딕", 12), width=20)
 pwEntry = Entry(font=("맑은 고딕", 12), width=20, show="●")
