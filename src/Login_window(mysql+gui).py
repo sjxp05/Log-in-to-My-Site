@@ -1,9 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from datetime import *
-import pymysql
-import pyautogui as pg
-import random
+import pymysql, pyautogui as pg, random
 
 tk = Tk()
 tk.geometry("600x800")
